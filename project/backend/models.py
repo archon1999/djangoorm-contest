@@ -3,7 +3,7 @@ from django.db import models
 
 
 class User(AbstractUser):
-    uid = models.IntegerField()
+    pass
 
 
 class Problem(models.Model):
@@ -25,15 +25,16 @@ class Problem(models.Model):
         HARD = 6
         EXTREMAL = 7
 
-    uid = models.IntegerField()
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    time_limit = models.PositiveIntegerField(default=1000)
-    memory_limit = models.PositiveIntegerField(default=256)
     title = models.CharField(max_length=255)
     body = models.TextField()
+    time_limit = models.PositiveIntegerField(default=1000)
+    memory_limit = models.PositiveIntegerField(default=256)
     difficulty = models.IntegerField(choices=Difficulty.choices)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['id']
 
 
 class Tag(models.Model):
@@ -41,7 +42,6 @@ class Tag(models.Model):
 
 
 class ProblemTag(models.Model):
-    objects = models.Manager()
     problem = models.ForeignKey(
         Problem,
         on_delete=models.CASCADE,
@@ -108,3 +108,6 @@ class Attempt(models.Model):
     memory = models.PositiveIntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['id']

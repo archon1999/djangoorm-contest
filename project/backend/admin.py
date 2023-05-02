@@ -16,4 +16,4 @@ class AttemptAdmin(admin.ModelAdmin):
 
 @admin.register(User)
 class UserAdmin(UserAdmin):
-    list_display = ['uid']
+    pass
