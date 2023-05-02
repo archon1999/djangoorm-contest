@@ -1,1 +1,3 @@
-# djangoorm-contest
+# Django ORM | Contest
+
+### 
